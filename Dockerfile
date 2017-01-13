@@ -40,8 +40,13 @@ RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.
 RUN service mysql start \
 	&& mysqladmin -u root create soda
 
+# adding the startup script
+COPY start.sh /soda
+RUN chmod +x start.sh
+
 EXPOSE 8080
 
 # sudo docker run -it --rm -p 80:8080 soda
-CMD [ "/opt/tomcat/bin/catalina.sh", "run" ]
+CMD [ "/soda/start.sh" ]
+
 

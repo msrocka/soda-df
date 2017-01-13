@@ -1,5 +1,5 @@
 #soda-df
-This project contains a Dockerfile and instructions to run a [soda4LCA node](https://bitbucket.org/okusche/soda4lca)
+This project contains a Dockerfile to run a [soda4LCA node](https://bitbucket.org/okusche/soda4lca)
 in a [Docker](https://www.docker.com/) container.
 
 ## Building the image

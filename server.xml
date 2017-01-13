@@ -56,8 +56,7 @@
       name="jdbc/soda4LCAdbconnection" 
       type="javax.sql.DataSource" 
       url="jdbc:mysql://localhost/soda?useUnicode=yes&amp;characterEncoding=UTF-8" 
-      username="root" 
-      password="" />		  
+      username="root" />		  
 			  
   </GlobalNamingResources>
 
