@@ -11,7 +11,18 @@ container:
 +------+            +-------+
 ```
 
-The [start.sh](./start.sh) 
+The [startup.sh](./startup.sh) script creates and links the containers
+`soda-mysql` (the MySQL container) and `soda` (the container with soda4LCA). 
+The MySQL data folder is mapped to the folder `/opt/soda/datadir` in the docker
+host but this can be configured in the script. This is the folder that you want
+to backup regularly. The script ['shutdown.sh'](./shutdown.sh) stops and deletes
+the containers. If you just want to restart a container, use the respective
+docker command, e.g.:
+
+```bash
+# restart the soda container:
+docker restart soda
+```
 
 ## Building the image
 Before building the Docker image, you need to download the current version of
