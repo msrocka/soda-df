@@ -50,3 +50,6 @@ sudo docker run -d -p 80:8080 soda
 
 (use the options -it and --rm instead of -d for testing the container 
 interactively)
+
+
+sudo docker exec -it soda /bin/bash

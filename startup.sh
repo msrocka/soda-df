@@ -23,7 +23,7 @@ docker run \
 
 echo "start the soda4LCA container and link it to MySQL ..."
 docker run \
-  -p 80:8080 \
+  -p 8080:8080 \
   --name soda \
   --link soda-mysql:mysqld \
   --rm -it soda
