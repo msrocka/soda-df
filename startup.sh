@@ -2,7 +2,8 @@
 
 DATA_DIR=/opt/soda/datadir
 
-[[ -d $DATA_DIR ]] || mkdir -p $DATA_DIR
+[[ -d $DATA_DIR/mysql ]] || mkdir -p $DATA_DIR/mysql
+[[ -d $DATA_DIR/soda ]] || mkdir -p $DATA_DIR/soda
 
 echo "using data dir: $DATA_DIR"
 
@@ -10,7 +11,7 @@ echo "start the MySQL container ..."
 # to expose the 3306 port to the host, add: -p 3306:3306  
 docker run \
   --name soda-mysql \
-  -v $DATA_DIR:/var/lib/mysql \
+  -v $DATA_DIR/mysql:/var/lib/mysql \
   -e MYSQL_ROOT_PASSWORD=r00t \
   -e MYSQL_DATABASE=soda \
   -e MYSQL_USER=soda-user \
@@ -26,6 +27,7 @@ echo "start the soda4LCA container and link it to MySQL ..."
 # in interactive mode
 docker run \
   -p 8080:8080 \
+  -v $DATA_DIR/soda:/opt/soda/data
   --name soda \
   --link soda-mysql:mysqld \
   -d soda

@@ -40,6 +40,12 @@ RUN cp /opt/tomcat/webapps/Node.war /opt/tomcat/webapps/ROOT.war \
 COPY server.xml /opt/tomcat/conf
 COPY soda4LCA.properties /opt/tomcat/conf
 
+# create upload and data folders
+RUN mkdir -p /opt/soda/data/datafiles \
+    && mkdir -p /opt/soda/data/validation_profiles \
+	&& mkdir -p /opt/soda/data/tmp/uploads \
+	&& mkdir -p /opt/soda/data/tmp/zips \
+
 # adding the startup script
 COPY start.sh /soda
 RUN chmod +x start.sh
