@@ -1,6 +1,7 @@
-#soda-df
-This project contains a Dockerfile to run a [soda4LCA node](https://bitbucket.org/okusche/soda4lca)
-in a [Docker](https://www.docker.com/) container.
+# soda-df
+This project contains a Dockerfile and some scripts to run a 
+[soda4LCA node](https://bitbucket.org/okusche/soda4lca) in a 
+[Docker](https://www.docker.com/) container.
 
 ## Building the image
 Before building the Docker image, you need to download the current version of
