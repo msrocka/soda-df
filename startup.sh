@@ -22,10 +22,12 @@ docker run \
   --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
 
 echo "start the soda4LCA container and link it to MySQL ..."
+# use the options `--rm -it` instead of -d to run the container
+# in interactive mode
 docker run \
   -p 8080:8080 \
   --name soda \
   --link soda-mysql:mysqld \
-  --rm -it soda
+  -d soda
 
 echo "all done"
