@@ -55,8 +55,9 @@
       logAbandoned="true" 
       name="jdbc/soda4LCAdbconnection" 
       type="javax.sql.DataSource" 
-      url="jdbc:mysql://localhost/soda?useUnicode=yes&amp;characterEncoding=UTF-8" 
-      username="root" />		  
+      url="jdbc:mysql://mysqld:3306/soda?useUnicode=yes&amp;characterEncoding=UTF-8" 
+      username="soda-user"
+      password="soda-pw" />		  
 			  
   </GlobalNamingResources>
 

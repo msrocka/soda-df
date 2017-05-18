@@ -1,32 +1,22 @@
 FROM ubuntu:16.10
 
-# for MySQL installation without password prompt
-ENV DEBIAN_FRONTEND noninteractive
 
-# install curl, Open JDK, and MySQL
+# install curl, Open JDK
 RUN set -x \
 	&& apt-get update && apt-get install -y \
 	curl \
 	unzip \
 	openjdk-8-jre-headless \
-	mysql-server \
-	mysql-client \
-	libmysqlclient-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 WORKDIR /soda
 
 # download and extract Tomcat to '/opt/tomcat'
-RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz \
+RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.14/bin/apache-tomcat-8.5.14.tar.gz \
 	&& mkdir /opt/tomcat \
 	&& tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1 \
 	&& rm apache-tomcat-8*tar.gz
-
-# copy the webapp and configuration files
-COPY soda.war /opt/tomcat/webapps
-COPY server.xml /opt/tomcat/conf
-COPY soda4LCA.properties /opt/tomcat/conf
 
 # download and put the MySQL driver into the tomcat libraries
 RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz \
@@ -36,9 +26,10 @@ RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.
 	&& rm -rf connector-j \
 	&& rm mysql-connector-java-*.tar.gz
 
-# initialize the soda4LCA database
-RUN service mysql start \
-	&& mysqladmin -u root create soda
+# copy the webapp and configuration files
+COPY soda.war /opt/tomcat/webapps
+COPY server.xml /opt/tomcat/conf
+COPY soda4LCA.properties /opt/tomcat/conf
 
 # adding the startup script
 COPY start.sh /soda
@@ -48,5 +39,3 @@ EXPOSE 8080
 
 # sudo docker run -it --rm -p 80:8080 soda
 CMD [ "/soda/start.sh" ]
-
-
