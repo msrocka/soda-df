@@ -1,7 +1,17 @@
 # soda-df
 This project contains a Dockerfile and some scripts to run a 
 [soda4LCA node](https://bitbucket.org/okusche/soda4lca) in a 
-[Docker](https://www.docker.com/) container.
+[Docker](https://www.docker.com/) container. The soda4LCA container contains
+a JVM and a Tomcat with the soda4LCA application. It is then linked to a MySQL
+container:
+
+```
++------+            +-------+
+| soda | -- 3306 -- | MySQL |
++------+            +-------+
+```
+
+The [start.sh](./start.sh) 
 
 ## Building the image
 Before building the Docker image, you need to download the current version of
