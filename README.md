@@ -26,18 +26,20 @@ docker restart soda
 
 ## Building the image
 Before building the Docker image, you need to download the current version of
-soda4LCA, extrat it, and copy the file `soda4LCA_*/bin/Node.war` as `soda.war`
+soda4LCA, extrat it, and copy the file `soda4LCA_*/bin/Node.war` as `Node.war`
 next to the Dockerfile. You may also want to change the settings in the
-`soda4LCA.properties`.
-
-After this you should be able to build the image, e.g. the following command
-will build the image with the name `soda`:
+`soda4LCA.properties`. Also, make sure that the Tomcat and Connector-J download
+links in the Dockerfile work. After this you should be able to build the image:
 
 ```bash
+cd container
+# build the "soda" image
 docker build -t soda .
 ```
 
-## Running the container
+## Building and running the containers
+
+
 The container contains a MySQL and Tomcat server that are started via the
 default command. The Tomcat port 8080 is exposed and can be mapped to a port
 of the host, e.g. to port 80:

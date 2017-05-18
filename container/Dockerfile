@@ -13,13 +13,13 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 WORKDIR /soda
 
 # download and extract Tomcat to '/opt/tomcat'
-RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.14/bin/apache-tomcat-8.5.14.tar.gz \
+RUN curl -O http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz \
 	&& mkdir /opt/tomcat \
 	&& tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1 \
 	&& rm apache-tomcat-8*tar.gz
 
 # download and put the MySQL driver into the tomcat libraries
-RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz \
+RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.42.tar.gz \
 	&& mkdir connector-j \
 	&& tar xvf mysql-connector-java-*.tar.gz -C connector-j --strip-components=1 \
 	&& mv connector-j/mysql-connector-*.jar /opt/tomcat/lib \
@@ -27,7 +27,7 @@ RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.
 	&& rm mysql-connector-java-*.tar.gz
 
 # copy the webapp and configuration files
-COPY soda.war /opt/tomcat/webapps
+COPY Node.war /opt/tomcat/webapps
 COPY server.xml /opt/tomcat/conf
 COPY soda4LCA.properties /opt/tomcat/conf
 
