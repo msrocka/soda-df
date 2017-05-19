@@ -30,10 +30,10 @@ docker restart soda
 ## Building the image
 Before building the Docker image, you need to download the current version of
 soda4LCA, extrat it, and copy the file `soda4LCA_*/bin/Node.war` as `Node.war`
-next to the Dockerfile. You may also want to change the settings in the
-`soda4LCA.properties` but make sure that you keep the settings for the data
-files. Also, make sure that the Tomcat and Connector-J download links in the 
-Dockerfile work. After this you should be able to build the image:
+next to the Dockerfile. You may also want to change the home page and the 
+settings in the `soda4LCA.properties` but make sure that you keep the settings
+for the data files. Also, make sure that the Tomcat and Connector-J download
+links in the Dockerfile work. After this you should be able to build the image:
 
 ```bash
 cd container
@@ -43,18 +43,35 @@ docker build -t soda .
 
 ## Running the containers
 As described above the [startup.sh](./startup.sh) script will create and start
-the containers. 
-
-The container contains a MySQL and Tomcat server that are started via the
-default command. The Tomcat port 8080 is exposed and can be mapped to a port
-of the host, e.g. to port 80:
+the containers. After you build the image and tested it locally you probably
+want to distribute it on a production server. The easiest way to do that is to
+export the image to a tar file and upload it to the server:
 
 ```bash
-sudo docker run -d -p 80:8080 soda
+docker save soda -o soda-image.tar
+``` 
+
+You also want to upload the `startup.sh` and `shutdown.sh` scripts to the server.
+If you set up a database upload also the data directory `/opt/soda/datadir` (or
+your location if you changed it in the startup.sh script) to the same location
+on the server.
+
+The startup.sh script maps the 8080 port to the same port on the docker host.
+You may also want to change this to port 80 in the startup script:
+
+```bash
+docker run -p 80:8080 ...
 ```
 
-(use the options -it and --rm instead of -d for testing the container 
-interactively)
+Then import the image on the server and run the startup script:
 
+```bash
+docker load -i soda-image.tar
+./startup.sh
+```
 
+To connect a shell with a running soda container (e.g. for debugging), do:
+
+```
 sudo docker exec -it soda /bin/bash
+```
