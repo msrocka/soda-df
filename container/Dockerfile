@@ -31,9 +31,11 @@ RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.
 	&& rm mysql-connector-java-*.tar.gz
 
 # copy the webapp
-COPY Node.war /opt/tomcat/webapps
-RUN cp /opt/tomcat/webapps/Node.war /opt/tomcat/webapps/ROOT.war \
-	&& rm /opt/tomcat/webapps/Node.war
+COPY Node.war .
+RUN mkdir -p /opt/tomcat/webapps/ROOT \
+	&& unzip Node.war -d /opt/tomcat/webapps/ROOT \
+	&& rm Node.war
+COPY home.html /opt/tomcat/webapps/ROOT/templates/default/html
 
 # copy configuration files
 COPY server.xml /opt/tomcat/conf
