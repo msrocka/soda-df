@@ -1,6 +1,5 @@
 FROM ubuntu:16.10
 
-
 # install curl, Open JDK
 RUN set -x \
 	&& apt-get update && apt-get install -y \
@@ -34,7 +33,7 @@ RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.
 # copy the webapp
 COPY Node.war /opt/tomcat/webapps
 RUN cp /opt/tomcat/webapps/Node.war /opt/tomcat/webapps/ROOT.war \
-    && rm /opt/tomcat/webapps/Node.war
+	&& rm /opt/tomcat/webapps/Node.war
 
 # copy configuration files
 COPY server.xml /opt/tomcat/conf
@@ -42,9 +41,9 @@ COPY soda4LCA.properties /opt/tomcat/conf
 
 # create upload and data folders
 RUN mkdir -p /opt/soda/data/datafiles \
-    && mkdir -p /opt/soda/data/validation_profiles \
+	&& mkdir -p /opt/soda/data/validation_profiles \
 	&& mkdir -p /opt/soda/data/tmp/uploads \
-	&& mkdir -p /opt/soda/data/tmp/zips \
+	&& mkdir -p /opt/soda/data/tmp/zips
 
 # adding the startup script
 COPY start.sh /soda

@@ -2,8 +2,12 @@
 
 DATA_DIR=/opt/soda/datadir
 
+# create data folders if they do not exist yet
 [[ -d $DATA_DIR/mysql ]] || mkdir -p $DATA_DIR/mysql
-[[ -d $DATA_DIR/soda ]] || mkdir -p $DATA_DIR/soda
+[[ -d $DATA_DIR/soda/datafiles ]] || mkdir -p $DATA_DIR/soda/datafiles
+[[ -d $DATA_DIR/soda/validation_profiles ]] || mkdir -p $DATA_DIR/soda/validation_profiles
+[[ -d $DATA_DIR/soda/tmp/uploads ]] || mkdir -p $DATA_DIR/soda/tmp/uploads
+[[ -d $DATA_DIR/soda/tmp/zips ]] || mkdir -p $DATA_DIR/soda/tmp/zips
 
 echo "using data dir: $DATA_DIR"
 
@@ -27,7 +31,7 @@ echo "start the soda4LCA container and link it to MySQL ..."
 # in interactive mode
 docker run \
   -p 8080:8080 \
-  -v $DATA_DIR/soda:/opt/soda/data
+  -v $DATA_DIR/soda:/opt/soda/data \
   --name soda \
   --link soda-mysql:mysqld \
   -d soda
