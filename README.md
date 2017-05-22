@@ -75,3 +75,6 @@ To connect a shell with a running soda container (e.g. for debugging), do:
 ```
 sudo docker exec -it soda /bin/bash
 ```
+
+## Troubleshooting
+* https://forums.docker.com/t/docker-and-iptables-configuration-startup/904
