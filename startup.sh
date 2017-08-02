@@ -30,7 +30,7 @@ echo "start the soda4LCA container and link it to MySQL ..."
 # use the options `--rm -it` instead of -d to run the container
 # in interactive mode
 docker run \
-  -p 8080:8080 \
+  -p 80:8080 \
   -v $DATA_DIR/soda:/opt/soda/data \
   --name soda \
   --link soda-mysql:mysqld \

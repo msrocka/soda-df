@@ -41,6 +41,7 @@ COPY logo.png /opt/tomcat/webapps/ROOT/templates/default/images
 # copy configuration files
 COPY server.xml /opt/tomcat/conf
 COPY soda4LCA.properties /opt/tomcat/conf
+COPY web.xml /opt/tomcat/conf
 
 # create upload and data folders
 RUN mkdir -p /opt/soda/data/datafiles \
