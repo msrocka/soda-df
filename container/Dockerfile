@@ -12,7 +12,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 WORKDIR /soda
 
 # download and extract Tomcat to '/opt/tomcat' and remove the admin tools
-RUN curl -O http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.15/bin/apache-tomcat-8.5.15.tar.gz \
+RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.16/bin/apache-tomcat-8.5.16.tar.gz \
 	&& mkdir /opt/tomcat \
 	&& tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1 \
 	&& rm apache-tomcat-8*tar.gz \
@@ -36,6 +36,7 @@ RUN mkdir -p /opt/tomcat/webapps/ROOT \
 	&& unzip Node.war -d /opt/tomcat/webapps/ROOT \
 	&& rm Node.war
 COPY home.html /opt/tomcat/webapps/ROOT/templates/default/html
+COPY logo.png /opt/tomcat/webapps/ROOT/templates/default/images
 
 # copy configuration files
 COPY server.xml /opt/tomcat/conf
