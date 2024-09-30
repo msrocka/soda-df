@@ -1,3 +1,5 @@
+**Update**: There are [official Docker images for soda4LCA](https://hub.docker.com/r/okworx/soda4lca) available now which you should use; this repository was just an initial setup that worked quite some years ago.
+
 # soda-df
 This project contains a Dockerfile and some scripts to run a 
 [soda4LCA node](https://bitbucket.org/okusche/soda4lca) in a 
